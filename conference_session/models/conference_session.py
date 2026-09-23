@@ -7,8 +7,8 @@ class ConferenceSession(models.Model):
     _order = 'date, name'
 
     name = fields.Char(string='Title', required=True)
-    speaker = fields.Char(string='Speaker')           # ← will be renamed 'presenter' in v19
-    duration = fields.Integer(string='Duration (min)')  # ← will become Float (hours) in v19
+    presenter_id = fields.Many2one('res.partner')
+    duration = fields.Float(string='Duration (min)')
     room = fields.Char(string='Room')
     notes = fields.Text(string='Notes')
     date = fields.Date(string='Date')
