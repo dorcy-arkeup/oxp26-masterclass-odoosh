@@ -1,6 +1,7 @@
 {
     'name': 'Conference Sessions',
-    'version': '17.0.1.0.0',
+    'version': '19.0.1.0.0',
+    'author': 'Your Name',
     'summary': 'Track sessions for conferences and training events',
     'depends': ['base'],
     'data': [
