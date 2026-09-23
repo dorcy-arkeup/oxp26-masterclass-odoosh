@@ -20,11 +20,11 @@ class ConferenceSession(models.Model):
     )
 
     def _compute_room_session_count(self):
+        room_data = self.read_group(domain=[('room', 'in', self.mapped('room'))], fields=['id'], groupby='room')
+        datas = {r['room']: r['room_count'] for r in room_data}
         for session in self:
             # deliberately slow: fires one SQL query per record
-            session.room_session_count = self.search_count(
-                [('room', '=', session.room)]
-            )
+            session.room_session_count = datas.get(session.room, 0)
 
     # ── populate (odoo-bin populate --size=medium --models=conference.session) ──
 
